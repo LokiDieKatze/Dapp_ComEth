@@ -1,12 +1,16 @@
+import React from "react";
 import { Box } from "@chakra-ui/react";
 import NavLat from "../organisms/NavLat";
 import PropositionTemplate from "../templates/PropositionTemplate";
+import UseEffect from "../atoms/UseEffect";
+
 const Proposition = () => {
   return (
     <>
-      <Box h="85vh" w="100%" bgGradient="linear(to-t,gray.800, teal.400);">
-        <PropositionTemplate />
+      <Box minH="100vh" maxW="100%" w="100%" bgGradient="linear(to-t,teal.600, teal.400);">
         <NavLat />
+        <PropositionTemplate />
+        <UseEffect />
       </Box>
     </>
   );

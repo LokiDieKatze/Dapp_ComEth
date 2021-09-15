@@ -1,13 +1,17 @@
+import React from "react";
 import { Box } from "@chakra-ui/react";
-import NavLat from "../organisms/NavLat";
 import StatsTemplate from "../templates/StatsTemplate";
+import NavInfoOnly from "../organisms/NavInfoOnly";
+import UseEffect from "../atoms/UseEffect";
+
 
 const Stats = () => {
   return (
     <>
-    <Box h="85vh" w="100%"  bgGradient="linear(to-t,gray.800, teal.400);">
+    <Box minH="100vh" maxH="100%" w="100%"  bgGradient="linear(to-t,teal.600, teal.400);">
+    <NavInfoOnly />
       <StatsTemplate />
-      <NavLat/>
+      <UseEffect />
       </Box>
     </>
   );

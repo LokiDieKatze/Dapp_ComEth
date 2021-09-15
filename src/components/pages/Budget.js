@@ -1,13 +1,18 @@
+import React from "react";
 import { Box } from "@chakra-ui/react";
-import NavLat from "../organisms/NavLat";
+import NavInfoOnly from "../organisms/NavInfoOnly";
 import BudgetTemplate from "../templates/BudgetTemplate";
+import UseEffect from "../atoms/UseEffect";
+
 
 const Budget = () => {
+  
   return (
     <>
-      <Box h="85vh" w="100%" bgGradient="linear(to-t,gray.800, teal.400);">
+      <Box minH="100vh" maxW="100%" w="100%" bgGradient="linear(to-t,teal.600, teal.400);">
+        <NavInfoOnly />
         <BudgetTemplate />
-        <NavLat />
+        <UseEffect />
       </Box>
     </>
   );

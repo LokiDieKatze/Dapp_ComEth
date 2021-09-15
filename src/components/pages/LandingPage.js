@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <>
     {/* TODO : faire la page front joulie  */}
-      <Box h="84vh" w="100%">
+      <Box w="100%" minH="100vh" bgGradient="linear(to-t,blue.100, blue.400);">
         <LandingPageTemplate />
       </Box>
     </>

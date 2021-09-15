@@ -1,14 +1,26 @@
-import { Center, Heading } from "@chakra-ui/react";
-import InfoNav from "../organisms/InfoNav";
+import {
+  Center,
+  Heading,
+} from "@chakra-ui/react";
+import PoepleBudget from "../organisms/PoepleBudget";
 
 const PeopleTemplate = () => {
+
+
   return (
     <>
-
       <Center>
-      <Heading>View People</Heading>
+        <Heading
+          mt={{ base: "2rem", sm: "3rem", lg: "6rem" }}
+          ml={{md:"5rem"}}
+          textAlign="center"
+          fontSize={{base:"40px", md:"4xl"}}
+          fontFamily="mono"
+        >
+          Membre de ma ComEhnauté
+        </Heading>
       </Center>
-      <InfoNav />
+      <PoepleBudget />
     </>
   );
 };

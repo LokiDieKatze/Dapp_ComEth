@@ -1,12 +1,17 @@
+import React from "react";
 import { Box } from "@chakra-ui/react";
-import NavLat from "../organisms/NavLat";
+import NavInfoOnly from "../organisms/NavInfoOnly";
 import PeopleTemplate from "../templates/PeopleTemplate";
+import UseEffect from "../atoms/UseEffect";
+
 const People = () => {
+
   return (
     <>
-      <Box h="85vh" w="100%" bgGradient="linear(to-t,gray.800, teal.400);">
+      <Box minH="100vh" w="100%" bgGradient="linear(to-t,teal.600, teal.400);">
+        <NavInfoOnly />
         <PeopleTemplate />
-        <NavLat />
+        <UseEffect />
       </Box>
     </>
   );

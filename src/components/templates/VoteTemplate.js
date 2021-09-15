@@ -1,43 +1,24 @@
 import {
-  Box,
-  Button,
   Center,
-  FormControl,
-  FormLabel,
   Heading,
-  Select,
-  useToast,
 } from "@chakra-ui/react";
-import { ComEthContext } from "../../App";
-import { useContext, useEffect } from "react";
-import { Web3Context } from "web3-hooks";
+import VoteBody from "../organisms/VoteBody";
 
 const VoteTemplate = () => {
 
-  const [web3State] = useContext(Web3Context);
-  const comEth = useContext(ComEthContext);
-
-  const toast = useToast();
-  
   return (
     <>
-
       <Center>
-      <Heading marginBottom="2rem">Just Vote</Heading>
+        <Heading
+          mt={{ base: "2rem", sm: "3rem", lg: "6rem" }}
+          ml={{ sm: "1rem" }}
+          fontSize={{base:"40px", md:"4xl"}}
+          fontFamily="mono"
+        >
+          Votez
+        </Heading>
       </Center>
-      <Center>
-        <Box boxShadow="dark-lg" w="40rem" rounded="lg">
-        <FormControl id="country" w="32rem" margin="2rem">
-          <FormLabel fontWeight="bold" margin="1rem">Que diriez-vous d'une salle de sport ?</FormLabel>
-          <Select boxShadow="lg" margin="1rem" placeholder="Selectionnez votre réponse">
-            <option>Oui</option>
-            <option>Non</option>
-            <option>Blanc</option>
-          </Select>
-          <Button boxShadow="lg" margin="2rem">Voter</Button>
-        </FormControl>
-        </Box>
-      </Center>
+     <VoteBody />
     </>
   );
 };

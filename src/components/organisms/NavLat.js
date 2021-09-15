@@ -1,20 +1,40 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react';
-import InfoButton from '../atoms/InfoButton';
-import ProposButton from '../atoms/ProposButton';
-import VoteButton from '../atoms/VoteButton';
+import {
+    Box,
+} from "@chakra-ui/react";
+import { React } from "react";
+import VoteButton from "../atoms/VoteButton";
+import ProposButton from "../atoms/ProposButton";
+import InfoButton from "../atoms/InfoButton";
+import Logo from "../atoms/Logo";
+
+
 
 const NavLat = () => {
+
+
     return (
         <>
-            <Box pos="absolute" top="0" boxShadow="dark-lg" backgroundColor="gray.900" h="100%" w="11%">
-                <Box marginTop="10rem">
-                    <VoteButton />
-                    <ProposButton />
-                    <InfoButton />
-                </Box>
+            
+                <Box
+                    pos="absolute"
+                    display={{base:"none",sm:"none",md:" list-item"}}
+                    top="0"
+                    h="100%"
+                    w={{ sm: "8rem", md: "9rem", lg: "10rem" }}
+                    boxShadow="dark-lg"
+                    backgroundColor="gray.900"
+                >
                 
-            </Box>
+                
+                    <Box pos="sticky" top="10" left="0">
+                        <Box mb="13rem">
+                            <Logo />
+                        </Box>
+                        <VoteButton />
+                        <ProposButton />
+                        <InfoButton />
+                    </Box>
+                </Box>
         </>
     );
 };

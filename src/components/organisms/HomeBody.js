@@ -1,24 +1,36 @@
-import { Box,  Flex } from "@chakra-ui/react";
 import React from "react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import InfoButton from "../atoms/InfoButton";
 import ProposButton from "../atoms/ProposButton";
 import VoteButton from "../atoms/VoteButton";
+import AddUserAndPay from "../atoms/AddUserAndPay";
+
 
 const HomeBody = () => {
-    return (
-        <>
-        <Flex w="97%" marginTop="4rem">
-        <Box boxShadow="dark-lg" marginLeft="11rem" rounded="md" w="25%" h="17rem">
-        <Box marginTop="12rem" marginLeft="6rem"><VoteButton/></Box>
-        </Box>
-        <Box boxShadow="dark-lg" marginLeft="6rem" rounded="md" w="25%" h="17rem">
-        <Box marginTop="12rem" marginLeft="4.5rem"><ProposButton /></Box>
-        </Box>
-        <Box boxShadow="dark-lg" marginLeft="6rem" rounded="md" w="25%" h="17rem">
-        <Box marginTop="12rem" marginLeft="7rem"><InfoButton /></Box>
-        </Box>
-        </Flex>
-        </>);
-};
 
+  return (
+    <>
+    <AddUserAndPay />
+      <SimpleGrid columns={[1, 1, 2, 3]} spacing="40px" mr={{base:"1rem",sm:"3rem"}} mt={{ base: "1rem", sm: "2rem", md: "2rem", lg: "6rem" }} ml={{base:"1rem", sm:"3rem", md:"10rem", lg:"12rem"}}>
+        <Box rounded="md" textAlign="center" p="2rem" backgroundColor="blackAlpha.200" height="90%">
+          <Box fontWeight="bold" boxShadow="inner" p="0.5rem" rounded="md" backgroundColor="teal.400" mb={{base:"25%",sm:"25%"}}>
+           Venez voter les propositions déjà suggérer par votre groupe ComEth
+           </Box>
+          <VoteButton />
+        </Box>
+        <Box rounded="md"  textAlign="center" p="2rem"  backgroundColor="blackAlpha.200" height="90%">
+        <Box fontWeight="bold" boxShadow="inner" p="0.5rem" rounded="md" backgroundColor="teal.400" mb={{base:"25%",sm:"37%", lg:"25%"}}>
+          Soumettez vos propres propositions à faire voter à votre groupe
+          </Box> <ProposButton />
+        </Box>
+        <Box rounded="md" textAlign="center" p="2rem" backgroundColor="blackAlpha.200" height={{base:"95%", lg:"90%"}}>
+        <Box fontWeight="bold" boxShadow="inner" p="0.5rem" rounded="md" backgroundColor="teal.400" mb={{base:"25%",sm:"23%", lg:"25%"}}>
+          Retrouvez vos informations, statistique, proposition déjà voter ici
+          </Box>
+          <InfoButton />
+        </Box>
+      </SimpleGrid>
+    </>
+  )
+};
 export default HomeBody;

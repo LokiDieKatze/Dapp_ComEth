@@ -1,20 +1,23 @@
-import { Link } from "react-router-dom";
 import React from "react";
-import { Center, Box, Heading } from "@chakra-ui/react";
-import ToggleModeDark from "./ToggleModeDark";
+import { Box, Stack } from "@chakra-ui/react";
+import Logo from "../atoms/Logo";
+import MobilNav from "../atoms/MobilNav";
 
 const MainHeader = () => {
+
     return (
         <>
-            <Box right="0" left="0" w="100%" backgroundColor="teal.400"  boxShadow="dark-lg">
-                <Box marginLeft="9rem">
-                <Link to="/home">Logo</Link>
+           
+                <Box pos="sticky" w="100%" backgroundColor="teal.400">
+                    <Stack direction="row">
+                        <Box mr={{base:"50%", sm:"69%"}}>
+                        <Logo />
+                        </Box>
+                        <Box display={{ base: "flex", sm: "flex", md: "none" }}>
+                            <MobilNav />
+                        </Box>
+                    </Stack>
                 </Box>
-                <Center>
-                    <Heading marginBottom="2rem">Main ComEth Header</Heading>
-                </Center>
-                <ToggleModeDark />
-            </Box>
         </>
     );
 };

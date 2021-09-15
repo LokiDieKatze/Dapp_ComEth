@@ -1,36 +1,39 @@
-import { Box, Button, Center, Input, Select } from "@chakra-ui/react";
+import {
+  Box,
+  Circle,
+  Center,
+  FormLabel,
+  Input,
+  Select,
+} from "@chakra-ui/react";
 import React from "react";
-//import { ComEthContext } from "../../App";
-import { /*useContext,*/ useEffect, useState } from "react";
-//import { Web3Context } from "web3-hooks";
+import { ComEthContext } from "../../context/ComEthContext";
+import { useContext, useEffect, useState } from "react";
 
+//import { Web3Context } from "web3-hooks";
+const ethers = require("ethers");
 const SubmitProposalForm = () => {
   //   const [web3State] = useContext(Web3Context);
-  //   const comEth = useContext(ComEthContext);
-  const [optionVote, setOptionVote] = useState([""]);
+  const comEth = useContext(ComEthContext);
+
+  // const [optionVote, setOptionVote] = useState([""]);;
 
   const [proposition, setProposition] = useState({
-    voteOption: optionVote,
+    // voteOption: optionVote,
     title: "",
     timeLimit: 0,
     target: "",
     sum: 0,
   });
-  //const [nbOptions, setNbOptions] = useState(1);
-
-  //const toast = useToast();
+  
+  useEffect(() => {
+    console.log(proposition);
+  }, [proposition]);
 
   const handleChangeProposition = (e) => {
     try {
+      // setOptionVote(optionVote)
       setProposition({ ...proposition, title: e.target.value });
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-  const handleChangeOptions = (e) => {
-    handleChangeVoteOption(e);
-    try {
-      setProposition({ ...proposition, options: e.target.value });
     } catch (e) {
       console.log(e.message);
     }
@@ -38,7 +41,7 @@ const SubmitProposalForm = () => {
 
   const handleChangeTimeLimit = (e) => {
     try {
-      setProposition({ ...proposition, timeLimit: e.target.value });
+      setProposition({ ...proposition, timeLimit: Number(e.target.value) });
     } catch (e) {
       console.log(e.message);
     }
@@ -52,109 +55,107 @@ const SubmitProposalForm = () => {
   };
   const handleChangeAmount = (e) => {
     try {
-      setProposition({ ...proposition, sum: e.target.value });
+      setProposition({
+        ...proposition,
+        sum: ethers.utils.parseEther(e.target.value),
+      });
     } catch (e) {
       console.log(e.message);
     }
   };
+
   const handleSubmitAll = async () => {
     try {
-    } catch (e) {}
-  };
-  const handleClickAddOption = () => {
-    setOptionVote(optionVote.push(""));
-    //setNbOptions(nbOptions + 1);
-  };
-  const handleChangeVoteOption = (e) => {
-    let tmp = [...optionVote];
-    tmp[e.key] = e.target.value;
-    setOptionVote(tmp);
-  };
-  const handleClickSubOption = () => {
-    if (optionVote.length > 1) {
-      setOptionVote(optionVote.pop());
+      //fonction ComEth submitProposal a remplir grace au form voteOption,
+      const {  title, timeLimit, target, sum } = proposition;
+       await comEth.submitProposal(
+        // voteOption,
+        title,
+        timeLimit,
+        target,
+        sum
+      );
+    } catch (e) {
+      console.log(e.message);
     }
   };
-  useEffect(() => {
-    console.log(proposition);
-  }, [proposition]);
+
   return (
     <>
       <Center>
-        <Box boxShadow="dark-lg" w="45rem" h="100%" rounded="lg">
-          <Box>Titre de proposition proposition</Box>
+        <Box
+          position="static"
+          boxShadow="lg"
+          backgroundColor="blackAlpha.200"
+          padding="2rem"
+          w={{ sm: "86%", md: "43rem", lg: "40rem" }}
+          ml={{ sm: "0.5rem", md: "9rem" }}
+          mt={{ base: "1rem", sm: "2rem", md: "2rem", lg: "2rem" }}
+        >
+          <FormLabel fontWeight="bold">
+            Titre de proposition proposition
+          </FormLabel>
           <Input
             onChange={handleChangeProposition}
+            backgroundColor="teal.600"
+            size="sm"
             boxShadow="lg"
-            w="32rem"
+            w={{ sm: "99%", md: "32rem" }}
             placeholder="Salle de sport ?"
             margin="1rem"
+            position="static"
           />
 
-          <Box>Vos Options de Vote - propositions</Box>
-       
-        
-          <Input
-          onChange={handleChangeOptions}
-          boxShadow="lg"
-          w="32rem"
-          placeholder={`option`}
-          margin="1rem"
-        />
-            <Button marginRight="1rem" onClick={handleClickAddOption}>
-          +
-        </Button>
-        <Button onClick={handleClickSubOption}>-</Button> 
-          
-
-         
-        <Input
-          onChange={handleChangeOptions}
-          boxShadow="lg"
-          w="32rem"
-          placeholder={`option`}
-          margin="1rem"
-        />
-            <Button marginRight="1rem" onClick={handleClickAddOption}>
-          +
-        </Button>
-        <Button onClick={handleClickSubOption}>-</Button> 
-         
-         
-       
-
-          <Box>Choisir votre limie de temps</Box>
+          <FormLabel p="-0" fontWeight="bold">
+            Choisir votre limie de temps
+          </FormLabel>
           <Select
             onChange={handleChangeTimeLimit}
+            backgroundColor="teal.600"
+            size="sm"
             boxShadow="lg"
-            w="32rem"
+            w={{ sm: "99%", md: "32rem" }}
             margin="1rem"
           >
-            <option value="option1">1 semaine</option>
-            <option value="option2">2 semaines</option>
-            <option value="option3">3 semaines</option>
-            <option value="option4">4 semaines</option>
+            <option value="604800">1 semaine</option>
+            <option value="1209600">2 semaines</option>
+            <option value="1814400">3 semaines</option>
+            <option value="2419200">4 semaines</option>
           </Select>
 
-          <Box>Paiement reveiver</Box>
-          <Input
-            onChange={handleChangeAddressReceive}
-            boxShadow="lg"
-            w="32rem"
-            placeholder="Que diriez-vous d'une salle de sport ?"
-            margin="1rem"
-          />
-
-          <Box>Amount</Box>
+          <FormLabel fontWeight="bold">Amount</FormLabel>
           <Input
             onChange={handleChangeAmount}
+            backgroundColor="teal.600"
+            size="sm"
             boxShadow="lg"
-            w="32rem"
-            placeholder="Que diriez-vous d'une salle de sport ?"
+            w={{ sm: "99%", md: "32rem" }}
+            placeholder="0.75"
             margin="1rem"
           />
-
-          <Button onClick={handleSubmitAll}>Valider</Button>
+          <FormLabel fontWeight="bold">Paiement reveiver</FormLabel>
+          <Input
+            onChange={handleChangeAddressReceive}
+            backgroundColor="teal.600"
+            size="sm"
+            boxShadow="lg"
+            w={{ sm: "99%", md: "32rem" }}
+            placeholder="0x00...."
+            margin="1rem"
+          />
+          <Center>
+            <Circle
+              as="button"
+              backgroundColor="whiteAlpha.400"
+              p="1rem"
+              m="0.5rem"
+              fontWeight="bold"
+              onClick={handleSubmitAll}
+              _hover={{ bg: "#21bdbf" }}
+            >
+              Valider
+            </Circle>
+          </Center>
         </Box>
       </Center>
     </>
