@@ -18,7 +18,8 @@
 
 ## Description
 
-- testnet use : Rinkeby
+- testnet use : Rinkeby, Kovan, Ropsten, Goerli
+
 - **ComEth dApp**
 
 This repository contains a React project for our DAO-like ComEth DApp using the Ethereum Blockchain. There will be a "ComEth Factory" allowing a user to create a personalized ComEth project. Each ComEth gathers users together and offers them the tools to manage their common pot through the payment of a monthly subscription and a voting system, all in an entirely decentralized structure.
